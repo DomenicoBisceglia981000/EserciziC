@@ -14,31 +14,40 @@ Suggerimento: i parametri max secondmax sono da utilizzare in modo simile ai par
 
 */
 
-//DA FINIRE!!!!!
 
 #include <stdio.h>
 #include <ctype.h>
 
 
 void max_secondmax(int a[], int n, int *max, int *second_max){
-    for(int i = 0; i < len; i++){
-        
+    for(int i = 0; i < n; i++){
+        //devo trovare il maggiore ed il secondo maggiore
+        if(a[i] > *max){
+            *second_max = *max;
+            *max = a[i];
+            
+        }else if((a[i] > *second_max) && (a[i] != *max)){
+            *second_max = a[i];
+        }
     }
 }
 
 void main(int argc, char *argv[]){
     int len = sizeof(argv[1]);
-    printf("LEN : %d", len);
+    //printf("LEN : %d", len);
     int arrayInteri[len];
-    int *max, *secondMax = 0;
+    
     for(int i = 0; i < len; i++){
         if(isdigit(argv[1][i]) != 0){
             arrayInteri[i] = argv[1][i] - '0';
-            printf("\n%d*/*", arrayInteri[i]);
-            printf("\n//%d//\n", i);
+            //printf("\n%d*/*", arrayInteri[i]);
+            //printf("\n//%d//\n", i);
         }
 
     }
-    max_secondMax(arrayInteri, len-2, &max, &second_max);
+    int max = arrayInteri[0]; 
+    int second_max = arrayInteri[1];
+    max_secondmax(arrayInteri, len-2, &max, &second_max);
+    printf("MAX : %d\nSECOND MAX : %d\n", max, second_max);
 
 }
